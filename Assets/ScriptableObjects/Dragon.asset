@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e78a00d520bc7b42888bd2a2061a971, type: 3}
+  m_Name: Dragon
+  m_EditorClassIdentifier: 
+  CAMERA_FREELOOK: {fileID: 5884150433206017668, guid: bcb588f5f5e993449817feda996c0541,
+    type: 3}
+  CharacterName: Spiro
+  CharacterModel: {fileID: -927199367670048503, guid: 8e0c3e6822182f146a2bc05e62e06ec3,
+    type: 3}

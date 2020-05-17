@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4e78a00d520bc7b42888bd2a2061a971
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - CAMERA_FREELOOK: {fileID: 5884150433206017668, guid: bcb588f5f5e993449817feda996c0541,
+      type: 3}
+  - CharacterModel: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

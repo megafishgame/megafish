@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using UnityEditor;
 using UnityEngine;
 
 public class PlayerGenerate : MonoBehaviour
@@ -12,11 +11,21 @@ public class PlayerGenerate : MonoBehaviour
     {
         GameObject character = Instantiate(player.CharacterModel, transform.position, Quaternion.identity) as GameObject;
         GameObject camera = Instantiate(player.CAMERA_FREELOOK, transform.position, Quaternion.identity) as GameObject;
+        GameObject model = character.transform.Find("Armature").gameObject;
+
+        GameObject empty = new GameObject("GroundChecker");
+        empty.transform.parent = character.transform;
+        empty.tag = "GroundChecker";
 
         character.AddComponent<CharacterController>();
         character.AddComponent<PlayerMovements>();
         character.AddComponent<UseCapacities>();
-        character.AddComponent(player.Capacities.GetClass());
+        character.AddComponent<PlayerStats>();
+
+        model.AddComponent<RotateUsingCamera>();
+
+        System.Type MyScriptType = System.Type.GetType(player.Capacities + ",Assembly-CSharp");
+        character.AddComponent(MyScriptType);
 
         ChangeCharacterControllerSize(character);
         SetupCamera(camera, character);
@@ -25,6 +34,8 @@ public class PlayerGenerate : MonoBehaviour
         character.tag = "Player";
         camera.tag = "CAMERA_FREELOOK";
 
+        character.GetComponent<PlayerMovements>().groundMask.value = 1 << 8;
+        character.GetComponent<PlayerStats>().Gender = player.Gender;
     }
 
     void ChangeBoxSize(GameObject character)
@@ -46,6 +57,5 @@ public class PlayerGenerate : MonoBehaviour
         CinemachineFreeLook CFL = camera.GetComponent<CinemachineFreeLook>();
         CFL.Follow = character.transform;
         CFL.LookAt = character.transform;
-        character.GetComponent<PlayerMovements>().CAMERA_FREELOOK = camera;
     }
 }

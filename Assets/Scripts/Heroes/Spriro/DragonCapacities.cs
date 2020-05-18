@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class test_capacities : ScriptCapacities
+public class DragonCapacities : ScriptCapacities
 {
     public override void Capacity1()
     {
@@ -8,6 +8,6 @@ public class test_capacities : ScriptCapacities
     }
     public override void Capacity2()
     {
-        GetComponent<PlayerMovements>().Jump(GetComponent<PlayerMovements>().jumpHeight * 3);
+        Debug.Log("Capacity 2 trigger");
     }
 }

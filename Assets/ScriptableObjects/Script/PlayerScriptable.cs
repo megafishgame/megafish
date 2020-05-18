@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName ="New  Player", menuName ="Player")]
@@ -12,5 +11,5 @@ public class PlayerScriptable : ScriptableObject
     public GameObject CharacterModel;
     public EnumType.GenderPlayer Gender;
 
-    public MonoScript Capacities;
+    public EnumScriptName.ScriptName Capacities;
 }

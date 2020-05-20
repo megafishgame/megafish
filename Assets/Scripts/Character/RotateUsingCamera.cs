@@ -11,6 +11,7 @@ public class RotateUsingCamera : MonoBehaviour
 
     public Vector3 last = Vector3.zero;
     public Vector3 actual;
+    public float offset = -90;
     void Start()
     {
         MAIN_CAMERA = GameObject.FindGameObjectWithTag("MainCamera");
@@ -23,7 +24,7 @@ public class RotateUsingCamera : MonoBehaviour
         float z = Input.GetAxis("Vertical");
         if (Mathf.Abs(x) >= 0.1f || Mathf.Abs(z) >= 0.1f)
         {
-            transform.DORotateQuaternion(Quaternion.Euler(new Vector3(0, MAIN_CAMERA.transform.rotation.eulerAngles.y, 0)), 0.2f);
+            transform.DORotateQuaternion(Quaternion.Euler(new Vector3(offset, MAIN_CAMERA.transform.rotation.eulerAngles.y, 0)), 0.2f);
             time = timeReset;
         }
         else
@@ -43,13 +44,12 @@ public class RotateUsingCamera : MonoBehaviour
     void Rotate()
     {
         last = actual;
-        actual = new Vector3(0, MAIN_CAMERA.transform.rotation.eulerAngles.y, 0);
+        actual = new Vector3(offset, MAIN_CAMERA.transform.rotation.eulerAngles.y, 0);
         float rotation = Vector3.Distance(last, actual);
 
-        //Debug.Log($"<color=magenta>Rotation: {rotation} </color>");
 
          if (rotation < 20)
-            transform.DORotateQuaternion(Quaternion.Euler(new Vector3(0, MAIN_CAMERA.transform.rotation.eulerAngles.y, 0)), 0.5f);
+            transform.DORotateQuaternion(Quaternion.Euler(new Vector3(offset, MAIN_CAMERA.transform.rotation.eulerAngles.y, 0)), 0.5f);
         
     }
 }

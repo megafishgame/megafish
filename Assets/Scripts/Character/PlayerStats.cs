@@ -14,4 +14,14 @@ public class PlayerStats : MonoBehaviour
             door.GetComponent<DeactivateDoorForGender>().enabled = true;
         }
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GameObject.FindGameObjectWithTag("Respawn").GetComponent<PlayerGenerate>().SavePosition();
+            GameObject.FindGameObjectWithTag("Respawn").GetComponent<PlayerGenerate>().Regenerate();
+            DoorsUpdate();
+        }
+    }
 }

@@ -7,8 +7,11 @@ using UnityEngine;
 public class PlayerScriptable : ScriptableObject
 {
     public GameObject CAMERA_FREELOOK;
+    public Avatar Avatar;
     public string CharacterName;
     public GameObject CharacterModel;
+    public RuntimeAnimatorController Anim;
+
     public EnumType.GenderPlayer Gender;
 
     public EnumScriptName.ScriptName Capacities;

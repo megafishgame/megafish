@@ -22,6 +22,8 @@ public class PlayerMovements : MonoBehaviour
     public LayerMask groundMask;
     public bool isGrounded;
 
+    public Animator anim;
+
 
     void Start()
     {
@@ -34,15 +36,29 @@ public class PlayerMovements : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (groundCheck == null)
+        {
+            groundCheck = GameObject.FindGameObjectWithTag("GroundChecker").transform;
+            return;
+        }
+        if (anim == null)
+        {
+            anim = GetComponent<Animator>();
+            return;
+        }
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-       
+
         if (isGrounded && velocity.y < 0)
             velocity.y = -2f;
-        
+
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = MoveMaths(x, z);
+        if (move != Vector3.zero)
+            anim.SetFloat("speed", Mathf.Min(anim.GetFloat("speed") + 2.25f * Time.deltaTime, 1f));
+        else
+            anim.SetFloat("speed", Mathf.Max(anim.GetFloat("speed") - 2.25f * Time.deltaTime, 0f));
 
         controller.Move(move * speed * Time.deltaTime);
 
@@ -53,6 +69,8 @@ public class PlayerMovements : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+    
     }
 
     public void Jump(float jumpH)

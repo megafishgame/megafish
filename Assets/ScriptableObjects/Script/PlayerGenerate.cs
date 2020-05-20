@@ -6,15 +6,30 @@ using UnityEngine;
 
 public class PlayerGenerate : MonoBehaviour
 {
-    public PlayerScriptable player;
+    public List<PlayerScriptable> players = new List<PlayerScriptable>();
+    public int index;
+    public Vector3 playerPosition = Vector3.zero;
+
+    private GameObject character;
+    private GameObject camera;
+
     void Start()
     {
-        GameObject character = Instantiate(player.CharacterModel, transform.position, Quaternion.identity) as GameObject;
-        GameObject camera = Instantiate(player.CAMERA_FREELOOK, transform.position, Quaternion.identity) as GameObject;
+        Generate();
+    }
+
+    void Generate()
+    {
+        PlayerScriptable player = players[index];
+        character = playerPosition == Vector3.zero ? Instantiate(player.CharacterModel, transform.position, Quaternion.identity) as GameObject
+            : Instantiate(player.CharacterModel, playerPosition, Quaternion.identity) as GameObject;
+        camera = Instantiate(player.CAMERA_FREELOOK, transform.position, Quaternion.identity) as GameObject;
+
         GameObject model = character.transform.Find("Armature").gameObject;
 
         GameObject empty = new GameObject("GroundChecker");
         empty.transform.parent = character.transform;
+        empty.transform.position = playerPosition;
         empty.tag = "GroundChecker";
 
         character.AddComponent<CharacterController>();
@@ -36,6 +51,9 @@ public class PlayerGenerate : MonoBehaviour
 
         character.GetComponent<PlayerMovements>().groundMask.value = 1 << 8;
         character.GetComponent<PlayerStats>().Gender = player.Gender;
+
+        character.GetComponent<Animator>().runtimeAnimatorController = player.Anim;
+        character.GetComponent<Animator>().avatar = player.Avatar;
     }
 
     void ChangeBoxSize(GameObject character)
@@ -44,6 +62,7 @@ public class PlayerGenerate : MonoBehaviour
         BC.size = new Vector3(0.7f, 1.05f, 0.6f);
         BC.center = new Vector3(0, 0.52f, 0);
     }
+
     void ChangeCharacterControllerSize(GameObject character)
     {
         CharacterController CC = character.GetComponent<CharacterController>();
@@ -57,5 +76,17 @@ public class PlayerGenerate : MonoBehaviour
         CinemachineFreeLook CFL = camera.GetComponent<CinemachineFreeLook>();
         CFL.Follow = character.transform;
         CFL.LookAt = character.transform;
+    }
+
+    public void SavePosition()
+    {
+        playerPosition = character.transform.position;
+    }
+    public void Regenerate()
+    {
+        Destroy(camera);
+        Destroy(character);
+        index = (index + 1) % players.Count;
+        Generate();
     }
 }

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e78a00d520bc7b42888bd2a2061a971, type: 3}
+  m_Name: Water
+  m_EditorClassIdentifier: 
+  CAMERA_FREELOOK: {fileID: 5884150433206017668, guid: bcb588f5f5e993449817feda996c0541,
+    type: 3}
+  Avatar: {fileID: 9000000, guid: dd4b3380981da574fab42af005dde426, type: 3}
+  CharacterName: HERO
+  CharacterModel: {fileID: 993614583469098238, guid: 6a9ea3c2c00870345926bfa993a6a454,
+    type: 3}
+  Anim: {fileID: 9100000, guid: 7cb414a64666c554b9a0196473ca1bcf, type: 2}
+  Gender: 1
+  Capacities: 0

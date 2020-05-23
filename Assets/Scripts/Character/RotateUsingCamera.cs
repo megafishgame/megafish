@@ -11,7 +11,8 @@ public class RotateUsingCamera : MonoBehaviour
 
     public Vector3 last = Vector3.zero;
     public Vector3 actual;
-    public float offset = -90;
+    public float offset = 0; //-90;
+
     void Start()
     {
         MAIN_CAMERA = GameObject.FindGameObjectWithTag("MainCamera");

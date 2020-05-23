@@ -5,23 +5,27 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public EnumType.GenderPlayer Gender;
-
-    void DoorsUpdate()
-    {
-        GameObject[] doors = GameObject.FindGameObjectsWithTag("Door");
-        foreach (var door in doors)
-        {
-            door.GetComponent<DeactivateDoorForGender>().enabled = true;
-        }
-    }
+    public bool regenerate = false;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
             GameObject.FindGameObjectWithTag("Respawn").GetComponent<PlayerGenerate>().SavePosition();
-            GameObject.FindGameObjectWithTag("Respawn").GetComponent<PlayerGenerate>().Regenerate();
-            DoorsUpdate();
+            GameObject.FindGameObjectWithTag("Respawn").GetComponent<PlayerGenerate>().Summon();
+            regenerate = true;
+        }
+        if (regenerate)
+        {
+            GameObject newPlayer = GameObject.FindGameObjectWithTag("NewPlayer");
+            if (newPlayer != null && newPlayer.GetComponent<TypeHolder>().respawn)
+            {
+                Destroy(newPlayer);
+                GameObject.FindGameObjectWithTag("Respawn").GetComponent<PlayerGenerate>().player = 
+                    newPlayer.GetComponent<TypeHolder>().holder;
+                GameObject.FindGameObjectWithTag("Respawn").GetComponent<PlayerGenerate>().DestroyOldGenerate();
+                regenerate = false;
+            }
         }
     }
 }

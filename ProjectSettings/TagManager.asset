@@ -7,6 +7,8 @@ TagManager:
   - CAMERA_FREELOOK
   - GroundChecker
   - Door
+  - Fence
+  - NewPlayer
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - 
   - Ground
-  - 
+  - Fence
   - 
   - 
   - 

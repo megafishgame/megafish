@@ -9,7 +9,7 @@ public class PlayerMovements : MonoBehaviour
 
     private CharacterController controller;
 
-    private const float gravity = -9.81f;
+    private const float gravity = -9.81f * 1.3f;
 
     public float speed = 12f;
     public float jumpHeight = 1.5f;
@@ -54,7 +54,7 @@ public class PlayerMovements : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = MoveMaths(x, z);
+        Vector3 move = MoveStatic(x, z); //MoveMaths(x, z);
         if (move != Vector3.zero)
             anim.SetFloat("speed", Mathf.Min(anim.GetFloat("speed") + 2.25f * Time.deltaTime, 1f));
         else
@@ -96,5 +96,4 @@ public class PlayerMovements : MonoBehaviour
     {
         return transform.right * x + transform.forward * z;
     }
-
 }

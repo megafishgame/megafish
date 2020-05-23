@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class GenerateFences : MonoBehaviour
 {
-    public bool gen;
-
     public GameObject pillar; //0.1f en x
     public GameObject joint;  //1f en x
     public GameObject apex;
@@ -23,26 +23,24 @@ public class GenerateFences : MonoBehaviour
 
     public GameObject type;
     public Vector3 typeOffset;
+    public Material typeMaterial;
+
     public Vector3 finalRotation;
     public Material fenceMaterial;
+    public EnumType.GenderPlayer Gender;
+
+    public Vector3 cameraPosition = new Vector3(-8, 8, 5);
+    public Vector3 cameraRotation = new Vector3(35, 90, 0);
 
     void Start()
     {
         Generate();
     }
-    private void FixedUpdate()
-    {
-        if (gen)
-        {
-            gen = false;
-            Destroy(empty);
-            Generate();
-        }
-    }
 
     void Generate()
     {
         empty = new GameObject("Fence");
+        empty.layer = 9;
 
         joints = pillars + 1;
         for (int i = 0; i < 2; i++)
@@ -68,13 +66,22 @@ public class GenerateFences : MonoBehaviour
 
         AddScripts();
 
-        empty.AddComponent<BoxCollider>();
-
         empty.transform.rotation = Quaternion.Euler(finalRotation);
 
         empty.tag = "Fence";
 
+        CreateCamera();
     }
+
+    void CreateCamera()
+    {
+        GameObject camera = new GameObject("FenceCamera");
+        camera.AddComponent<CinemachineVirtualCamera>();
+        camera.transform.position = transform.position += cameraPosition;
+        camera.transform.rotation = Quaternion.Euler(cameraRotation);
+        camera.transform.parent = empty.transform;
+    }
+
 
     void CreatePillars()
     {
@@ -116,11 +123,19 @@ public class GenerateFences : MonoBehaviour
         Vector3 offset = new Vector3(0, -Yscale / 2, distance / 2);
         GameObject T = Instantiate(type, position[0].transform.position - offset + typeOffset, Quaternion.identity) as GameObject;
         T.transform.parent = empty.transform;
+        T.GetComponent<MeshRenderer>().material = typeMaterial;
     }
 
     void AddScripts()
     {
         empty.AddComponent<FenceDrop>().Ymovement = -Yscale;
+        empty.GetComponent<FenceDrop>().Gender = Gender;
+        empty.AddComponent<BoxCollider>().isTrigger = true;
+        empty.GetComponent<BoxCollider>().size = new Vector3(5, empty.GetComponent<BoxCollider>().size.y, empty.GetComponent<BoxCollider>().size.z);
+
+        empty.AddComponent<BoxCollider>();
+        empty.AddComponent<Rigidbody>().useGravity = false;
+        empty.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
     }
 
     void GenerateMesh()

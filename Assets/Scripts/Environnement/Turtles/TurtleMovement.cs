@@ -6,6 +6,7 @@ using UnityEditor.EditorTools;
 
 public class TurtleMovement : MonoBehaviour
 {
+    private Vector3 initial;
     public bool isIn;
     public Vector3 lastAngle;
 
@@ -30,7 +31,7 @@ public class TurtleMovement : MonoBehaviour
 
     private void Awake()
     {
-
+        initial = transform.position;
         Quaternion rotation = Xaxis ? new Quaternion(0, 1, 1, 0) : new Quaternion(0.5f, 0.5f, -0.5f, 0.5f);
         GameObject a = Instantiate(arrow, arrowPosition.transform.position, rotation) as GameObject;
         a.transform.parent = gameObject.transform;
@@ -93,7 +94,7 @@ public class TurtleMovement : MonoBehaviour
         checkSphere.transform.position = vector;
         if (!Physics.CheckSphere(checkSphere.transform.position, sphereSize))
         {
-            gameObject.transform.DOLocalMove(vector, movingTime);
+            gameObject.transform.DOMove(vector, movingTime);
             StartCoroutine(falling());
         }
             
@@ -116,5 +117,10 @@ public class TurtleMovement : MonoBehaviour
      Gizmos.DrawSphere(transform.position + lastAngle * step, sphereSize); 
      Gizmos.color = Color.blue;
      Gizmos.DrawSphere(floorSphere.transform.position, sphereSize);
+    }
+
+    public void Reset()
+    {
+        gameObject.transform.position = initial;
     }
 }

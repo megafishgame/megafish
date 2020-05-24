@@ -47,6 +47,7 @@ public class PlayerGenerate : MonoBehaviour
         character.GetComponent<Animator>().runtimeAnimatorController = player.Anim;
         character.GetComponent<Animator>().avatar = player.Avatar;
 
+        LayerManager();
     }
 
     void ChangeBoxSize(GameObject character)
@@ -62,13 +63,17 @@ public class PlayerGenerate : MonoBehaviour
         character.AddComponent<PlayerMovements>();
         character.AddComponent<UseCapacities>();
         character.AddComponent<PlayerStats>();
-        //character.AddComponent<BoxCollider>();
-        //character.GetComponent<BoxCollider>().center = new Vector3(0, 0.5f, 0);
-
         character.AddComponent<RotateUsingCamera>();
+        character.AddComponent<GetAllTurtleArena>();
+
 
         System.Type MyScriptType = System.Type.GetType(player.Capacities + ",Assembly-CSharp");
         character.AddComponent(MyScriptType);
+    }
+
+    void LayerManager()
+    {
+        character.layer = LayerMask.NameToLayer("Player");
     }
 
     void ChangeCharacterControllerSize(GameObject character)

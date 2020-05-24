@@ -6,6 +6,7 @@ using UnityEngine;
 public class DragonCapacities : ScriptCapacities
 {
     public GameObject WaterBall;
+    public GameObject Torus;
     public List<int> objectToLoad = new List<int>();
     public GameObject Camera;
     public const float power = 1000;
@@ -13,6 +14,7 @@ public class DragonCapacities : ScriptCapacities
     private void Awake()
     {
         WaterBall = GameObject.FindGameObjectWithTag("Respawn").GetComponent<ObjectToLoad>().objects[0];
+        Torus = GameObject.FindGameObjectWithTag("Respawn").GetComponent<ObjectToLoad>().objects[1];
         Camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
@@ -27,6 +29,6 @@ public class DragonCapacities : ScriptCapacities
     }
     public override void Capacity2()
     {
-        Debug.Log("Capacity 2 trigger");
+        Instantiate(Torus, transform.position + Vector3.up, Quaternion.identity);
     }
 }

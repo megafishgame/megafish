@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovements : MonoBehaviour
 {
     [HideInInspector] public GameObject MAIN_CAMERA;
+    public GameObject lastArena;
 
     private CharacterController controller;
 
@@ -36,6 +37,9 @@ public class PlayerMovements : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Delete))
+            Restart();
+
         if (groundCheck == null)
         {
             groundCheck = GameObject.FindGameObjectWithTag("GroundChecker").transform;
@@ -95,5 +99,10 @@ public class PlayerMovements : MonoBehaviour
     Vector3 MoveStatic(float x, float z)
     {
         return transform.right * x + transform.forward * z;
+    }
+    public void Restart()
+    {
+        //reload scene
+        Debug.Log("reload scene");
     }
 }

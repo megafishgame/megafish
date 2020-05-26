@@ -56,7 +56,7 @@ public class FenceDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (start && other.transform.tag == "Player" && other.transform.GetComponent<PlayerStats>().Gender == Gender)
+        if (start && other.transform.tag == "Player" && other.transform.GetComponent<PlayerChange>().Gender == Gender)
             start = false;
     }
     private void Timer()

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEditor.EditorTools;
 
 public class TurtleMovement : MonoBehaviour
 {
@@ -21,6 +20,7 @@ public class TurtleMovement : MonoBehaviour
 
     public GameObject arrowPosition;
     public GameObject arrow;
+    public float arrowSize = 1;
 
     public float sphereSize = 0.5f;
 
@@ -35,11 +35,13 @@ public class TurtleMovement : MonoBehaviour
         Quaternion rotation = Xaxis ? new Quaternion(0, 1, 1, 0) : new Quaternion(0.5f, 0.5f, -0.5f, 0.5f);
         GameObject a = Instantiate(arrow, arrowPosition.transform.position, rotation) as GameObject;
         a.transform.parent = gameObject.transform;
+        a.transform.localScale *= arrowSize;
         if (both)
         {
             rotation = !Xaxis ? new Quaternion(0, 1, 1, 0) : new Quaternion(0.5f, 0.5f, -0.5f, 0.5f);
             a = Instantiate(arrow, arrowPosition.transform.position, rotation) as GameObject;
             a.transform.parent = gameObject.transform;
+            a.transform.localScale *= arrowSize;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -97,6 +99,7 @@ public class TurtleMovement : MonoBehaviour
             gameObject.transform.DOMove(vector, movingTime);
             StartCoroutine(falling());
         }
+
             
     }
 

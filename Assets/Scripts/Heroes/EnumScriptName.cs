@@ -7,5 +7,9 @@ public class EnumScriptName : MonoBehaviour
         test_capacities,
         DragonCapacities
     }
+    public enum ScriptEnemiesName
+    {
+        test_capacities_enemies
+    }
 }
 

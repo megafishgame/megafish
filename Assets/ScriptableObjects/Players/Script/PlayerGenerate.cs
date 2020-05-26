@@ -42,12 +42,13 @@ public class PlayerGenerate : MonoBehaviour
         camera_player.tag = "CAMERA_FREELOOK";
 
         character.GetComponent<PlayerMovements>().groundMask.value = 1 << 8;
-        character.GetComponent<PlayerStats>().Gender = player.Gender;
+        character.GetComponent<PlayerChange>().Gender = player.Gender;
 
         character.GetComponent<Animator>().runtimeAnimatorController = player.Anim;
         character.GetComponent<Animator>().avatar = player.Avatar;
 
         LayerManager();
+        GenerateUI();
     }
 
     void ChangeBoxSize(GameObject character)
@@ -59,10 +60,12 @@ public class PlayerGenerate : MonoBehaviour
 
     void ScriptManager(GameObject model, PlayerScriptable player)
     {
+        character.AddComponent<jsonReader>().fileN = player.json;
+
         character.AddComponent<CharacterController>();
         character.AddComponent<PlayerMovements>();
         character.AddComponent<UseCapacities>();
-        character.AddComponent<PlayerStats>();
+        character.AddComponent<PlayerChange>();
         character.AddComponent<RotateUsingCamera>();
         character.AddComponent<GetAllTurtleArena>();
 
@@ -107,5 +110,12 @@ public class PlayerGenerate : MonoBehaviour
         Destroy(character); 
         Generate();
         Debug.Log("generate...");
+    }
+
+    public void GenerateUI()
+    {
+        character.AddComponent<playerStats>().icon = player.icon;
+        GameObject UI = Instantiate(player.UI) as GameObject;
+        UI.GetComponent<UImanager>().player = character;
     }
 }

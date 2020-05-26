@@ -1,0 +1,15 @@
+{
+	"name": "Turtle",
+	"level": 0,
+    "initialHP" : 0,
+    "initialStamina" : 0,
+    "HPMax": 200,
+    "staminaMax": 200,
+    "HPBuff": 25,
+    "staminaBuff": 15,
+    "currentXP": 0,
+    "currentHP": -1,
+    "currentStamina": -1,
+    "isDead": false,
+	"haveBeenSummoned" : false
+}

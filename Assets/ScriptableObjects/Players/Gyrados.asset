@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CAMERA_FREELOOK: {fileID: 5884150433206017668, guid: bcb588f5f5e993449817feda996c0541,
     type: 3}
+  UI: {fileID: 6047817769669635374, guid: d002eb945447f9a429b97b1b3127aa66, type: 3}
+  icon: {fileID: 21300000, guid: 7aa1e1bceb5b9124097d199c309bad0d, type: 3}
   Avatar: {fileID: 9000000, guid: dd4b3380981da574fab42af005dde426, type: 3}
   CharacterName: Gyrados
   CharacterModel: {fileID: 3916051148050237967, guid: 8a4c57dc0236a0f4aa564da6951282cf,
     type: 3}
   Anim: {fileID: 9100000, guid: 7cb414a64666c554b9a0196473ca1bcf, type: 2}
   Gender: 1
+  json: 0
   Capacities: 1

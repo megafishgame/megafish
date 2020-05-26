@@ -7,7 +7,7 @@ public class UImanager : MonoBehaviour
 {
     [Header("Player")]
     public GameObject player;
-    private UIplayer playerInfo;
+    private playerStats playerInfo;
 
     private float lifeMax;
     private float staminaMax;
@@ -22,16 +22,16 @@ public class UImanager : MonoBehaviour
 
     void Start()
     {
-        playerInfo = player.GetComponent<UIplayer>();
-        lifeMax = playerInfo.lifeMax;
+        playerInfo = player.GetComponent<playerStats>();
+        lifeMax = playerInfo.HPMax;
         staminaMax = playerInfo.staminaMax;
         UpdateIcon(playerIcon, playerInfo.icon);
     }
 
     void Update()
     {
-        SetFillAmount(life, playerInfo.life / lifeMax);
-        SetFillAmount(stamina, playerInfo.stamina / staminaMax);
+        SetFillAmount(life, playerInfo.currentHP / lifeMax);
+        SetFillAmount(stamina, playerInfo.currentStamina / staminaMax);
         UpdateLevel(level, playerInfo.level); 
     }
 

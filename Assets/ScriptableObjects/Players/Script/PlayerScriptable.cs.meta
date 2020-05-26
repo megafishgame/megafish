@@ -6,6 +6,7 @@ MonoImporter:
   defaultReferences:
   - CAMERA_FREELOOK: {fileID: 5884150433206017668, guid: bcb588f5f5e993449817feda996c0541,
       type: 3}
+  - UI: {fileID: 6047817769669635374, guid: d002eb945447f9a429b97b1b3127aa66, type: 3}
   - Avatar: {fileID: 9000000, guid: 4017ba94fa84f3545b13f6d68a0ade75, type: 3}
   - CharacterModel: {instanceID: 0}
   - Anim: {fileID: 9100000, guid: 7cb414a64666c554b9a0196473ca1bcf, type: 2}

@@ -10,7 +10,7 @@ public class CollideDmgTorus : MonoBehaviour
         if(other.CompareTag("Enemie") && !enemies.Contains(other))
         {
             enemies.Add(other);
-            Debug.Log($"{other} added !");
+            other.GetComponent<EnemieScriptCapacity>().TakeDamage(50);
         }
     }
 }

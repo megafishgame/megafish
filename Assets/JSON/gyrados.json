@@ -1,1 +1,1 @@
-{"name":"Gyrados","level":0,"initialHP":200,"initialStamina":200,"HPBuff":25,"staminaBuff":15,"currentXP":0,"currentHP":-1,"currentStamina":-1,"isDead":false,"hasBeenSummoned":false}
+{"name":"Gyrados","level":3,"initialHP":200,"initialStamina":200,"initialXP":100,"HPBuff":25,"staminaBuff":15,"xpBuff":25,"currentXP":0,"currentHP":200,"currentStamina":200,"isDead":false,"hasBeenSummoned":false,"debug":true}

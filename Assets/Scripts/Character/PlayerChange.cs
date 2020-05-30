@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerChange : MonoBehaviour
 {
-    public EnumType.GenderPlayer Gender;
+    public EnumType.GenderPlayer gender;
     public bool regenerate = false;
 
     void Update()

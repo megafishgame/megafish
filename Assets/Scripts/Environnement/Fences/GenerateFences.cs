@@ -6,6 +6,8 @@ using UnityEngine.Analytics;
 
 public class GenerateFences : MonoBehaviour
 {
+    public bool crystal;
+
     public GameObject pillar; //0.1f en x
     public GameObject joint;  //1f en x
     public GameObject apex;
@@ -62,7 +64,8 @@ public class GenerateFences : MonoBehaviour
 
         GenerateMesh();
 
-        GenerateType(distance);
+        if (!crystal)
+            GenerateType(distance);
 
         AddScripts();
 
@@ -71,6 +74,8 @@ public class GenerateFences : MonoBehaviour
         empty.tag = "Fence";
 
         CreateCamera();
+
+        GetComponent<KeepReference>().reference = empty;
     }
 
     void CreateCamera()
@@ -130,6 +135,8 @@ public class GenerateFences : MonoBehaviour
     {
         empty.AddComponent<FenceDrop>().Ymovement = -Yscale;
         empty.GetComponent<FenceDrop>().Gender = Gender;
+        empty.GetComponent<FenceDrop>().crystal = crystal;
+
         empty.AddComponent<BoxCollider>().isTrigger = true;
         empty.GetComponent<BoxCollider>().size = new Vector3(5, empty.GetComponent<BoxCollider>().size.y, empty.GetComponent<BoxCollider>().size.z);
 

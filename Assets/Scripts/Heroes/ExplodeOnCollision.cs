@@ -9,6 +9,8 @@ public class ExplodeOnCollision : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
             return;
+        if(collision.transform.CompareTag("Enemie"))
+            collision.transform.GetComponent<EnemieScriptCapacity>().TakeDamage(50);
         Instantiate(particles, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

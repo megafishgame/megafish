@@ -1041,6 +1041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f3d0c88e9ca244fbff523a309ce434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies: []
 --- !u!54 &8213829417541026513
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1118,6 +1119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2601cb2b30a36fc4282f0c139ed2ddf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jump: 0.5
+  time: 0.4
 --- !u!114 &6135148317233763314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1146,4 +1149,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532764d5eb73bf544bebc28243e15b26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxValue: 5
+  maxValue: 8

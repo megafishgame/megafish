@@ -6,6 +6,8 @@ using System.Security.Cryptography;
 
 public class ExplosionTorusJump : MonoBehaviour
 {
+    public float jump = 0.3f;
+    public float time;
     private void Awake()
     {
         DOTween.Play(Jump());
@@ -13,7 +15,7 @@ public class ExplosionTorusJump : MonoBehaviour
     Sequence Jump()
     {
         Sequence s = DOTween.Sequence();
-        s.Append(transform.DOJump(transform.position - new Vector3(0, 0.5f, 0), 0.75f, 1, 0.75f));
+        s.Append(transform.DOJump(transform.position - new Vector3(0, jump, 0), 0.75f, 1, time));
         return s;
     }
 }

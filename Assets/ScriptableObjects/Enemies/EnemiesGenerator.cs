@@ -11,6 +11,8 @@ public class EnemiesGenerator : MonoBehaviour
     void Start()
     {
         character = Instantiate(enemie.EnemieModel, transform.position, Quaternion.identity) as GameObject;
+        character.tag = "Enemie";
+        character.name = enemie.name;
 
         ManageComponents();
         DestroyThis();
@@ -22,6 +24,12 @@ public class EnemiesGenerator : MonoBehaviour
 
         System.Type MyScriptType = System.Type.GetType(enemie.Capacities + ",Assembly-CSharp");
         character.AddComponent(MyScriptType);
+
+        EnemieScriptCapacity ESC = character.GetComponent(MyScriptType) as EnemieScriptCapacity;
+        ESC.deathParticles = enemie.deathParticles;
+        ESC.lifeMax = enemie.lifeMax;
+        ESC.Type = enemie.Type;
+        ESC.MovementsMode = enemie.MovementsMode;
 
         character.AddComponent<NavMeshAgent>().height = 1;
     }

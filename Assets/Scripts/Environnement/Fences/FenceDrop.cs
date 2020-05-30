@@ -7,6 +7,8 @@ using System.Threading;
 
 public class FenceDrop : MonoBehaviour
 {
+    public bool crystal;
+
     public float Ymovement;
     public float time = 5;
     public float offset = -0.75f;
@@ -54,9 +56,16 @@ public class FenceDrop : MonoBehaviour
         cam.SetActive(false);
     }
 
+    void DropCrystal()
+    {
+        start = false;
+        time *= 1.5f;
+        destroytime *= 1.6f;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (start && other.transform.tag == "Player" && other.transform.GetComponent<PlayerChange>().Gender == Gender)
+        if (start && other.transform.tag == "Player" && other.transform.GetComponent<PlayerChange>().gender == Gender && !crystal)
             start = false;
     }
     private void Timer()

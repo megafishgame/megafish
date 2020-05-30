@@ -42,13 +42,20 @@ public class PlayerGenerate : MonoBehaviour
         camera_player.tag = "CAMERA_FREELOOK";
 
         character.GetComponent<PlayerMovements>().groundMask.value = 1 << 8;
-        character.GetComponent<PlayerChange>().Gender = player.Gender;
+        character.GetComponent<PlayerChange>().gender = player.Gender;
 
         character.GetComponent<Animator>().runtimeAnimatorController = player.Anim;
         character.GetComponent<Animator>().avatar = player.Avatar;
 
         LayerManager();
         GenerateUI();
+
+        DEBUG();
+    }
+
+    void DEBUG()
+    {
+        character.AddComponent<DebugActionPlayer>();
     }
 
     void ChangeBoxSize(GameObject character)
@@ -114,7 +121,7 @@ public class PlayerGenerate : MonoBehaviour
 
     public void GenerateUI()
     {
-        character.AddComponent<playerStats>().icon = player.icon;
+        character.AddComponent<PlayerStats>().icon = player.icon;
         GameObject UI = Instantiate(player.UI) as GameObject;
         UI.GetComponent<UImanager>().player = character;
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
     private jsonReader json;
     [Header("properties")]
@@ -11,43 +11,77 @@ public class playerStats : MonoBehaviour
     public int level;
     public int initialHP;
     public int initialStamina;
+    public int initialXP;
     public int HPBuff;
     public int staminaBuff;
+    public int xpBuff;
     public int currentXP;
     public int currentHP;
     public int currentStamina;
     public bool isDead;
     public bool hasBeenSummoned;
+    public bool debug;
 
     public int HPMax;
     public int staminaMax;
-    [Header("functions")]
-    public bool levelUp;
+    public int xpMax;
+    //[Header("functions")]
     private void Awake()
     {
         json = GetComponent<jsonReader>();
     }
     private void Start()
     {
-        hasBeenSummoned = true;
-        json.hasBeenSummoned();
-        HPMax = initialHP + HPBuff * level;
-        staminaMax = initialStamina + staminaMax * level;
-    }
-    private void FixedUpdate()
-    {
-        if (levelUp)
+        UpdateMax();
+
+        if (!hasBeenSummoned)
         {
-            levelUp = false;
-            level += 1;
-            json.levelup();
-            HPMax = initialHP + HPBuff * level;
-            staminaMax = initialStamina + staminaMax * level;
+            currentHP = HPMax;
+            currentStamina = staminaMax;
+            UpdateHealth();
+            UpdateStamina();
         }
     }
+    public void UpdateMax()
+    {
+        HPMax = initialHP + HPBuff * level;
+        staminaMax = initialStamina + staminaMax * level;
+        xpMax = initialXP + xpMax * level;
+    }
+
+    public void UpdateHealth()
+    {
+        json.UpdateHealth();
+    }
+    public void UpdateStamina()
+    {
+        json.UpdateStamina();
+    }
+    public void UpdateXP()
+    {
+        if(currentXP > xpMax)
+        {
+            LevelUp();
+        }
+        json.UpdateXP();
+    }
+    public void LevelUp()
+    {
+        currentXP = 0;
+        level += 1;
+        UpdateMax();
+        json.UpdateLevel();
+    }
+
+    public void UpdateSummoned()
+    {
+        json.UpdateSummoned();
+    }
+
     private void OnApplicationQuit()
     {
-        hasBeenSummoned = false;
-        json.hasBeenSummoned();
+        UpdateHealth();
+        UpdateStamina(); 
+        UpdateSummoned();
     }
 }

@@ -50,13 +50,9 @@ public class PlayerGenerate : MonoBehaviour
         LayerManager();
         GenerateUI();
 
-        DEBUG();
     }
 
-    void DEBUG()
-    {
-        character.AddComponent<DebugActionPlayer>();
-    }
+
 
     void ChangeBoxSize(GameObject character)
     {
@@ -69,6 +65,7 @@ public class PlayerGenerate : MonoBehaviour
     {
         character.AddComponent<jsonReader>().fileN = player.json;
 
+        character.AddComponent<ActionPlayer>();
         character.AddComponent<CharacterController>();
         character.AddComponent<PlayerMovements>();
         character.AddComponent<UseCapacities>();

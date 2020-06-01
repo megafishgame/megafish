@@ -10,15 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0ca9eeb85d70d641b69839730e11bff, type: 3}
-  m_Name: Hello
+  m_Name: enemieTest
   m_EditorClassIdentifier: 
   Avatar: {fileID: 9000000, guid: dd4b3380981da574fab42af005dde426, type: 3}
-  EnemieName: test
+  EnemieName: enemie_test
   EnemieModel: {fileID: 4581054420863624876, guid: 2e7677c8de049e946a32d4499d3d5624,
     type: 3}
   Anim: {fileID: 9100000, guid: 7cb414a64666c554b9a0196473ca1bcf, type: 2}
-  Gender: 0
-  Capacities: 0
   lifeMax: 200
   deathParticles: {fileID: 2687903492439612277, guid: 6321c03ee6cd19b43a91de3ce08bbccd,
     type: 3}
+  Gender: 0
+  Capacities: 0
+  Type: 2
+  MovementsMode: 2
+  range: 1
+  damage: 25
+  attackCD: 0.1

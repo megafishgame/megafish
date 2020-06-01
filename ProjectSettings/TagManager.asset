@@ -14,6 +14,9 @@ TagManager:
   - Enemie
   - Crystal
   - EndCrystal
+  - UI
+  - waypointID
+  - Skystone
   layers:
   - Default
   - TransparentFX

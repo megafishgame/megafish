@@ -29,6 +29,7 @@ public class UImanager : MonoBehaviour
     public GameObject playerIcon;
     public GameObject level;
     public GameObject whiteRing;
+    public Vector3 initPos;
 
     private List<Color> colors = new List<Color>(new Color[] {
     new Color32(230, 126, 34, 255),
@@ -39,6 +40,7 @@ public class UImanager : MonoBehaviour
 
     void Start()
     {
+        initPos = playerIcon.GetComponent<RectTransform>().position;
         playerUnity = GameObject.FindGameObjectWithTag("Player");
         playerInfo = player.GetComponent<PlayerStats>();
         lifeMax = playerInfo.HPMax;
@@ -50,8 +52,8 @@ public class UImanager : MonoBehaviour
 
     void Update()
     {
-        SetFillAmount(life, playerInfo.currentHP / lifeMax);
-        SetFillAmount(stamina, playerInfo.currentStamina / staminaMax);
+        SetFillAmount(life, (float)playerInfo.currentHP / playerInfo.HPMax);
+        SetFillAmount(stamina, (float)playerInfo.currentStamina / playerInfo.staminaMax);
         SetFillAmount(xp, (float)playerInfo.currentXP / playerInfo.xpMax);
         UpdateLevel(level, playerInfo.level); 
     }
@@ -76,7 +78,7 @@ public class UImanager : MonoBehaviour
     }
     public void Shake(GameObject target, float time, float strength)
     {
-        if (target.transform.localScale == Vector3.one && target.transform.position == new Vector3(108 / 2, 180 / 2, 0))
+        if (target.transform.localScale == Vector3.one && target.GetComponent<RectTransform>().position == initPos)
         {
             float hp = (float)player.GetComponent<PlayerStats>().currentHP / (float)player.GetComponent<PlayerStats>().HPMax;
             target.transform.DOShakeScale(time, strength / 10, 1);
@@ -86,7 +88,7 @@ public class UImanager : MonoBehaviour
         else
         {
             target.transform.localScale = Vector3.one;
-            target.transform.position = new Vector3(108 / 2, 180 / 2, 0);
+            target.transform.position = initPos;
         }
     }
     public void Lerp()

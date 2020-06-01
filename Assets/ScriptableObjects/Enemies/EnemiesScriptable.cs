@@ -11,9 +11,13 @@ public class EnemiesScriptable : ScriptableObject
     public RuntimeAnimatorController Anim;
     public float lifeMax;
     public GameObject deathParticles;
+
     public EnumType.GenderPlayer Gender;
     public EnumScriptName.ScriptEnemiesName Capacities;
     public EnemieEnum.gender Type;
     public EnemieEnum.movements MovementsMode;
 
+    public int range;
+    public int damage;
+    public float attackCD = 0.1f;
 }

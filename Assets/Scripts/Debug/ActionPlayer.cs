@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DebugActionPlayer : MonoBehaviour
+public class ActionPlayer : MonoBehaviour
 {
     private PlayerStats playerStats;
     private UImanager UI;
@@ -31,21 +31,21 @@ public class DebugActionPlayer : MonoBehaviour
             GainXP();
         }
     }
-    void TakeDamage()
+    public void TakeDamage(int dmg = 25)
     {
-        playerStats.currentHP -= 25;
+        playerStats.currentHP -= dmg;
         playerStats.UpdateHealth();
         UI.Shake(UI.playerIcon, 0.5f, 3);
         UI.Lerp();
     }
-    void TakeStamina()
+    public void TakeStamina(int stamina = 25)
     {
-        playerStats.currentStamina -= 25;
+        playerStats.currentStamina -= stamina;
         playerStats.UpdateStamina();
     }
-    void GainXP()
+    public void GainXP(int xp = 25)
     {
-        playerStats.currentXP += 25;
+        playerStats.currentXP += xp;
         playerStats.UpdateXP();
     }
     void Summoned()

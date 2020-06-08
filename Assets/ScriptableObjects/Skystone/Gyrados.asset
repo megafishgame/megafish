@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Gyrados
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 96a415dbee8331e489c8a79cc24774eb, type: 3}
-  Attack: 05000000050000000500000005000000
+  Attack: 02000000040000000300000001000000

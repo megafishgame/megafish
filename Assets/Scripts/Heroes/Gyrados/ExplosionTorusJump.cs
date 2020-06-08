@@ -18,4 +18,11 @@ public class ExplosionTorusJump : MonoBehaviour
         s.Append(transform.DOJump(transform.position - new Vector3(0, jump, 0), 0.75f, 1, time));
         return s;
     }
+    public void Update()
+    {
+        Vector3 loc = transform.position;
+        loc.x = GameObject.FindGameObjectWithTag("Player").transform.position.x;
+        loc.z = GameObject.FindGameObjectWithTag("Player").transform.position.z;
+        transform.position = loc;
+    }
 }

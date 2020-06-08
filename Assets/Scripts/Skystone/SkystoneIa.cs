@@ -5,48 +5,76 @@ using UnityEngine;
 public class SkystoneIa : MonoBehaviour
 {
     public SkystoneScriptable[] skystones = new SkystoneScriptable[5];
-
+    private SkystoneTurn turn;
     public GameObject stone;
     public GameObject table;
     private int size = 3;
-    public bool p;
+    private bool p;
     private void Start()
     {
+        p = true;
         table = GameObject.FindGameObjectWithTag("Skystone");
+        turn = GetComponentInParent<SkystoneTurn>();
     }
 
     private void Update()
     {
-        if (p)
+        if (!turn.yourTurn && p)
         {
             p = false;
-            PlayTurn();
+            StartCoroutine(PlayTurn());
         }
     }
 
-    void PlayTurn()
+    IEnumerator PlayTurn()
     {
+        yield return new WaitForSeconds(2f);
         int imax = 0;
         int jmax = 0;
         int indexmax = 0;
         int scoremax = -100;
 
-        int index = 0;
-        for (int i = 0; i < size; i++)
+        for (int index = 0; index < 5; index++)
         {
-            for (int j = 0; j < size; j++)
+            if (skystones[index] != null)
             {
-                int score = WinPoint(i, j, skystones[index]);
-                if (score > scoremax) // is empty ?
+                for (int i = 0; i < size; i++)
                 {
-                    imax = i;
-                    jmax = j;
-                    indexmax = index;
-                    scoremax = score;
+                    for (int j = 0; j < size; j++)
+                    {
+                        int score = WinPoint(i, j, skystones[index]);
+                        if (score > scoremax) // is empty ?
+                        {
+                            imax = i;
+                            jmax = j;
+                            indexmax = index;
+                            scoremax = score;
+                        }
+                    }
                 }
             }
         }
-        Debug.Log(scoremax);
+        if (scoremax == 0)
+        {
+            while (true)
+            {
+                int i = Random.Range(0, 3);
+                int j = Random.Range(0, 3);
+                Container tablestone = table.GetComponent<GenerateTable>().table[i, j].GetComponent<Container>();
+                if (tablestone.isEmpty)
+                {
+                    imax = i;
+                    jmax = j;
+                    break;
+                }
+            }
+            while (true)
+            {
+                int index = Random.Range(0, 5);
+                if (skystones[index] != null)
+                    break;
+            }
+        }
         stone.GetComponent<SkystoneGenerate>().skystone = skystones[indexmax];
 
         Container cont = table.GetComponent<GenerateTable>().table[imax, jmax].gameObject.GetComponent<Container>();
@@ -70,6 +98,11 @@ public class SkystoneIa : MonoBehaviour
                 }
             }
         }
+        if(scoremax != 0)
+            yield return new WaitForSeconds(2f);
+        skystones[indexmax] = null;
+        turn.yourTurn = true;
+        p = true;
     }
     int WinPoint(int i, int j, SkystoneScriptable skystone)
     {

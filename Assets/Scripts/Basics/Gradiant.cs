@@ -18,5 +18,6 @@ public class Gradiant : MonoBehaviour
             colors[i] = Color.Lerp(init, tip, uv[i][axis]);
 
         mesh.colors = colors;
+        
     }
 }

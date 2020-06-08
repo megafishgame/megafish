@@ -48,7 +48,7 @@ public class CrystalLaserBeam : MonoBehaviour
         {
             if (!CheckValidity())
             {
-                beamStop.transform.position += transform.forward;
+                beamStop.transform.position += transform.forward/2;
             }
             else
                 break;
@@ -75,9 +75,9 @@ public class CrystalLaserBeam : MonoBehaviour
                 found = true;
                 break;
             }
-            else if (collider.CompareTag("EndCrystal") && !collider.GetComponent<CrystalEnd>().active)
+            else if (collider.CompareTag("EndCrystal") && !collider.GetComponent<ActionEnd>().active)
             {
-                collider.GetComponent<CrystalEnd>().action = true;
+                collider.GetComponent<ActionEnd>().action = true;
             }
         }
         if(!found && childCrystal != null)

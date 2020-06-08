@@ -1,17 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ClickPosition : MonoBehaviour
 {
-    public Image image;
     public GameObject stone;
     public GameObject deck;
     public bool isBlue;
+    public SkystoneTurn turn;
     private void Start()
     {
-        image.color = isBlue ? Color.blue : Color.red;
+        turn = GetComponent<SkystoneTurn>();
     }
     void Update()
     {
@@ -22,9 +21,9 @@ public class ClickPosition : MonoBehaviour
 ;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
             {
-                if (hit.transform.parent != null && hit.transform.parent.gameObject == gameObject && hit.transform.gameObject.GetComponent<Container>().isEmpty)
+                if (hit.transform.parent != null && hit.transform.parent.gameObject == gameObject && hit.transform.gameObject.GetComponent<Container>().isEmpty && turn.yourTurn)
                 {
-
+                    turn.yourTurn = false;
                     deck.GetComponent<Deck>().Play();
                     stone.GetComponent<SkystoneGenerate>().skystone = skystone;
 
@@ -54,7 +53,6 @@ public class ClickPosition : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             isBlue = !isBlue;
-            image.color = isBlue ? Color.blue : Color.red;
         }
     }
 }

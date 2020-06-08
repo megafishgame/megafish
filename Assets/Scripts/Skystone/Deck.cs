@@ -67,6 +67,7 @@ public class Deck : MonoBehaviour
         sizeList--;
         index = 0;
         transform.DOMove(transform.position + new Vector3(0.625f, 0, 0), 1);
+        Scale(scaleFactor);
     }
     private void Move(int pos)
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrystalEnd : MonoBehaviour
+public class ActionEnd : MonoBehaviour
 {
     public bool action;
     public bool active;

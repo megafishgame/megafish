@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Summon.unity
     guid: 1b8956ea625b95c43a25175eb11e93c7
+  - enabled: 1
+    path: Assets/Scenes/Skystone.unity
+    guid: cf0ea1807f2822148a589423104bb74d
+  - enabled: 0
+    path: Assets/Scenes/GreenScreen.unity
+    guid: e9f3719ecfc9db1409f0a8ae018153c8
   m_configObjects: {}

@@ -97,7 +97,7 @@ public class SkystoneBehaviour : MonoBehaviour
                 int attackM = positions[side].transform.childCount;
                 int attackE = enemieSkystone.positions[(side + 2) % 4].transform.childCount;
 
-                Debug.Log($"Attack : {positions[side].name} and you have {attackM}, defense has {attackE}");
+                //Debug.Log($"Attack : {positions[side].name} and you have {attackM}, defense has {attackE}");
 
                 if (attackE < attackM)
                 {

@@ -31,7 +31,8 @@ public class PlayerMovements : MonoBehaviour
         MAIN_CAMERA = GameObject.FindGameObjectWithTag("MainCamera");
         controller = GetComponent<CharacterController>();
         groundCheck = GameObject.FindGameObjectWithTag("GroundChecker").transform;
-        
+        groundCheck.transform.localPosition = Vector3.zero;
+
     }
 
     // Update is called once per frame
@@ -43,6 +44,7 @@ public class PlayerMovements : MonoBehaviour
         if (groundCheck == null)
         {
             groundCheck = GameObject.FindGameObjectWithTag("GroundChecker").transform;
+            groundCheck.transform.localPosition = Vector3.zero;
             return;
         }
         if (anim == null)

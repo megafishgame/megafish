@@ -17,6 +17,9 @@ TagManager:
   - UI
   - waypointID
   - Skystone
+  - SceneManager
+  - RESULT
+  - LastPannel
   layers:
   - Default
   - TransparentFX

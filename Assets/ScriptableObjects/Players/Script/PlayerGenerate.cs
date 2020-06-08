@@ -30,7 +30,6 @@ public class PlayerGenerate : MonoBehaviour
 
         GameObject empty = new GameObject("GroundChecker");
         empty.transform.parent = character.transform;
-        empty.transform.position = playerPosition;
         empty.tag = "GroundChecker";
 
         ScriptManager(model, player);
@@ -86,6 +85,7 @@ public class PlayerGenerate : MonoBehaviour
     void ChangeCharacterControllerSize(GameObject character)
     {
         CharacterController CC = character.GetComponent<CharacterController>();
+        CC.stepOffset = 0.15f;
         CC.height = 1.05f;
         CC.radius = 0.4f;
         CC.center = new Vector3(0, 0.52f, 0);

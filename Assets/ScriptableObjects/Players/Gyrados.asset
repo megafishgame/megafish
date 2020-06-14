@@ -21,6 +21,6 @@ MonoBehaviour:
   CharacterModel: {fileID: 3916051148050237967, guid: 8a4c57dc0236a0f4aa564da6951282cf,
     type: 3}
   Anim: {fileID: 9100000, guid: 7cb414a64666c554b9a0196473ca1bcf, type: 2}
-  Gender: 1
+  Gender: 2
   json: 0
   Capacities: 1

@@ -479,6 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec34e22e6f17815419517d4994d324dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapToLoad: Western
   red: {fileID: 975455391}
   blue: {fileID: 834157288}
 --- !u!1 &1136494626

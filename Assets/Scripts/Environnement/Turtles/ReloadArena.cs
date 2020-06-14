@@ -13,7 +13,7 @@ public class ReloadArena : MonoBehaviour
                 for (int i = 0; i < transform.childCount; i++)
                 {
                     Transform child = transform.GetChild(i);
-                    if (child.CompareTag("Turtle"))
+                    if (child.CompareTag("Turtle") || child.CompareTag("Crystal"))
                     {
                         child.GetComponent<TurtleMovement>().Reset();
                     }

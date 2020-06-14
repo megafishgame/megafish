@@ -26,8 +26,6 @@ public class GenerateFences : MonoBehaviour
     public GameObject type;
     public Vector3 typeOffset;
     public Material typeMaterial;
-
-    public Vector3 finalRotation;
     public Material fenceMaterial;
     public EnumType.GenderPlayer Gender;
 
@@ -42,6 +40,11 @@ public class GenerateFences : MonoBehaviour
     void Generate()
     {
         empty = new GameObject("Fence");
+        Vector3 init = gameObject.transform.position;
+        Quaternion initrot = gameObject.transform.rotation;
+        gameObject.transform.position = Vector3.zero; // new Vector3(0, init.y, 0);
+        gameObject.transform.rotation = new Quaternion(0, 0, 0, 0); 
+
         empty.layer = 9;
 
         joints = pillars + 1;
@@ -69,13 +72,16 @@ public class GenerateFences : MonoBehaviour
 
         AddScripts();
 
-        empty.transform.rotation = Quaternion.Euler(finalRotation);
 
         empty.tag = "Fence";
 
         CreateCamera();
 
         GetComponent<KeepReference>().reference = empty;
+
+        empty.transform.position = init;
+        empty.transform.rotation = initrot;
+        
     }
 
     void CreateCamera()

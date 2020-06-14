@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class KeepReference : MonoBehaviour
 {
-    public GameObject reference;
+    [HideInInspector]public GameObject reference;
 }

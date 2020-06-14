@@ -114,16 +114,24 @@ public class TurtleMovement : MonoBehaviour
         
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
-     Gizmos.color = Color.red;
-     Gizmos.DrawSphere(transform.position + lastAngle * step, sphereSize); 
-     Gizmos.color = Color.blue;
-     Gizmos.DrawSphere(floorSphere.transform.position, sphereSize);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position + lastAngle * step, sphereSize);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(floorSphere.transform.position, sphereSize);
+
     }
 
     public void Reset()
     {
+        Collider[] colliders = Physics.OverlapBox(initial, new Vector3(1f, 1f, 1f));
+        foreach (var col in colliders)
+        {
+            if (col.CompareTag("Player"))
+                return;
+        }
+        DOTween.Clear();
         gameObject.transform.position = initial;
     }
 }

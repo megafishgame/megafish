@@ -13,6 +13,8 @@ public class PlayerGenerate : MonoBehaviour
     private GameObject character;
     private GameObject camera_player;
 
+    public bool DEBUG;
+
     void Awake()
     {
         Generate();
@@ -48,6 +50,11 @@ public class PlayerGenerate : MonoBehaviour
 
         LayerManager();
         GenerateUI();
+
+        if(DEBUG)
+        {
+            character.GetComponent<PlayerMovements>().jumpHeight *= 5;
+        }
 
     }
 
@@ -85,7 +92,8 @@ public class PlayerGenerate : MonoBehaviour
     void ChangeCharacterControllerSize(GameObject character)
     {
         CharacterController CC = character.GetComponent<CharacterController>();
-        CC.stepOffset = 0.15f;
+        CC.slopeLimit = 90;
+        CC.stepOffset = 0.2f;
         CC.height = 1.05f;
         CC.radius = 0.4f;
         CC.center = new Vector3(0, 0.52f, 0);

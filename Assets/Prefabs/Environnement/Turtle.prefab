@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 3981096793075928203}
   m_Layer: 0
   m_Name: Turtle
-  m_TagString: Untagged
+  m_TagString: Turtle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -271,6 +271,7 @@ MonoBehaviour:
   both: 1
   arrowPosition: {fileID: 3981096793026935866}
   arrow: {fileID: 1437333040990806815, guid: 6090b5317cc12fa49b6ede02dff55623, type: 3}
+  arrowSize: 1
   sphereSize: 0.5
   checkSphere: {fileID: 7929020988215488131}
   floorSphere: {fileID: 7929020987709107875}
